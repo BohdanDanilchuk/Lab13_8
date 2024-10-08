@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Середнє Значення</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 50px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Обчислення Середнього Значення</h1>
+    <p>Введіть числа:</p>
+    <input type="number" placeholder="Число 1" id="num1">
+    <input type="number" placeholder="Число 2" id="num2">
+    <input type="number" placeholder="Число 3" id="num3">
+    <input type="number" placeholder="Число 4" id="num4">
+    <button onclick="calculateMean()">Обчислити Середнє</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateMean() {
+            const args = [];
+            for (let i = 1; i <= 4; i++) {
+                const value = document.getElementById(`num${i}`).value;
+                if (value) {
+                    args.push(Number(value));
+                }
+            }
+
+            const meanValue = mean(...args);
+            const message = args.length > 0 ? `Середнє значення: ${meanValue} <br> Ви ввели: ${args.join(", ")}` : "Будь ласка, введіть хоча б одне число.";
+            document.getElementById("result").innerHTML = message;
+        }
+
+        function mean() {
+            if (arguments.length === 0) {
+                return 0;
+            }
+            let result = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                result += arguments[i];
+            }
+            return result / arguments.length;
+        }
+    </script>
+</body>
+</html>
